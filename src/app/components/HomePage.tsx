@@ -1,7 +1,8 @@
 import React from 'react';
-import { ArrowRight, TrendingUp, Users, Eye, Clock } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users, Eye, Clock, FileText, Video, Mic } from 'lucide-react';
 import { PageType } from '../App';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import MultimediaHero from './MultimediaHero';
 
 interface HomePageProps {
   onNavigate: (page: PageType) => void;
@@ -45,38 +46,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative h-[600px] bg-slate-900 overflow-hidden">
-        <div className="absolute inset-0">
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1654868537177-86c35bb6b226?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm93ZCUyMHBlb3BsZSUyMGNvbW11bml0eXxlbnwxfHx8fDE3NzExNzk2Njd8MA&ixlib=rb-4.1.0&q=80&w=1080"
-            alt="Hero"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-end pb-16">
-          <div className="max-w-3xl">
-            <div className="inline-block px-3 py-1 bg-red-600 text-white text-sm font-bold rounded mb-4">
-              ENQUÊTE EXCLUSIVE
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
-              La corruption au cœur des marchés publics
-            </h1>
-            <p className="text-xl text-slate-300 mb-6">
-              Notre enquête révèle des pratiques illégales qui coûtent des millions aux contribuables. Un système de détournement organisé au plus haut niveau.
-            </p>
-            <button 
-              onClick={() => onNavigate('investigation')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-500 text-slate-950 font-bold rounded-lg hover:bg-yellow-400 transition-colors"
-            >
-              Lire l'enquête
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Multimedia hero (video/image) */}
+      <MultimediaHero onNavigate={onNavigate} />
 
       {/* Latest News Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -125,6 +96,57 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
             </button>
           ))}
+        </div>
+      </section>
+
+      {/* Explore: Text / Video / Audio */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-3xl font-bold text-slate-950 mb-6">Explorer</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-yellow-500 text-slate-950 rounded-lg">
+                <FileText className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Articles & Enquêtes</h3>
+                <p className="text-sm text-slate-600">Nos textes approfondis et enquêtes exclusives.</p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <button onClick={() => onNavigate('news')} className="px-5 py-3 bg-slate-950 text-white rounded-lg font-semibold">Voir les articles</button>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-gradient-to-r from-blue-600 to-yellow-500 text-white rounded-lg">
+                <Video className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Vidéos</h3>
+                <p className="text-sm text-slate-600">Reportages, enquêtes filmées et formats courts pour les réseaux.</p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <button onClick={() => onNavigate('video')} className="px-5 py-3 bg-slate-950 text-white rounded-lg font-semibold">Voir les vidéos</button>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-slate-800 text-white rounded-lg">
+                <Mic className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Audio & Podcasts</h3>
+                <p className="text-sm text-slate-600">Écoutez nos formats audio — entretiens et chroniques.</p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <button onClick={() => onNavigate('article')} className="px-5 py-3 bg-slate-950 text-white rounded-lg font-semibold">Écouter</button>
+            </div>
+          </div>
         </div>
       </section>
 
