@@ -47,12 +47,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div>
       {/* Multimedia hero (video/image) */}
-      <div className="home-hero">
-        <MultimediaHero onNavigate={onNavigate} />
-      </div>
+      <MultimediaHero onNavigate={onNavigate} />
 
       {/* Latest News Grid */}
-      <section className="home-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-3xl font-bold text-slate-950">Dernières actualités</h2>
           <button 
@@ -63,14 +61,15 @@ export function HomePage({ onNavigate }: HomePageProps) {
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {latestNews.map((article, index) => (
             <button
               key={index}
               onClick={() => onNavigate('article')}
-              className={`group text-left news-card p-0 ${index === 0 ? 'lg:col-span-2' : ''}`}
+              className="group text-left"
             >
-              <div className={`relative overflow-hidden mb-0 ${index === 0 ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden mb-4">
                 <ImageWithFallback
                   src={article.image}
                   alt={article.title}
@@ -82,20 +81,18 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   </span>
                 </div>
               </div>
-              <div className="p-4">
-                <h3 className="text-lg title mb-2 group-hover:text-yellow-600 transition-colors line-clamp-2">
-                  {article.title}
-                </h3>
-                <p className="text-sm excerpt mb-3 line-clamp-2">
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center gap-4 text-xs meta">
-                  <span className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
-                    {article.readTime}
-                  </span>
-                  <span>{article.date}</span>
-                </div>
+              <h3 className="text-lg font-bold text-slate-950 mb-2 group-hover:text-yellow-600 transition-colors line-clamp-2">
+                {article.title}
+              </h3>
+              <p className="text-sm text-slate-600 mb-3 line-clamp-2">
+                {article.excerpt}
+              </p>
+              <div className="flex items-center gap-4 text-xs text-slate-500">
+                <span className="flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  {article.readTime}
+                </span>
+                <span>{article.date}</span>
               </div>
             </button>
           ))}
