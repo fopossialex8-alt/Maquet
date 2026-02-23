@@ -284,4 +284,16 @@
     .ticker { display: none; }
     .cta-pill { padding: 6px 10px; font-size: 13px; }
   }
+
+  /* Homepage section and card polish */
+  .home-section { padding-top: 3rem; padding-bottom: 3rem; }
+  .home-hero { min-height: 420px; }
+  @media (min-width: 768px) { .home-hero { min-height: 520px; } }
+
+  .news-card { background: var(--color-card); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 30px rgba(2,6,23,0.08); transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium) var(--motion-ease); }
+  .news-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(2,6,23,0.12); }
+  .news-card .meta { font-size: 0.85rem; color: var(--color-muted-foreground); }
+  .news-card .title { font-weight: 700; color: var(--color-sidebar-primary); }
+  .news-card .excerpt { color: var(--color-muted-foreground); }
+
 }
